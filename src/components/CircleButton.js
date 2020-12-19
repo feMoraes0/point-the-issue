@@ -1,35 +1,48 @@
 import React from 'react';
-import {StyleSheet, View} from 'react-native';
+import {StyleSheet, TouchableOpacity} from 'react-native';
 
-const CircleButton = (props) => {
+const CircleButton = ({children, onPress, location, bgColour}) => {
+  const buttonPosition = () => {
+    if (location === 'top-left') {
+      return {top: 10, left: 10};
+    }
+    if (location === 'top-right') {
+      return {top: 10, right: 10};
+    }
+    if (location === 'bottom-right') {
+      return {top: 10, right: 10};
+    }
+    return {bottom: 10, right: 10};
+  };
+
+  const backgroundColour = () => {
+    return bgColour ? bgColour : '#292830';
+  };
+
   return (
     <>
-      <View style={styles.circleButton}>{props.children}</View>
+      <TouchableOpacity
+        onPress={() => onPress()}
+        style={[
+          styles.button,
+          buttonPosition(),
+          {backgroundColor: backgroundColour()},
+        ]}>
+        {children}
+      </TouchableOpacity>
     </>
   );
 };
 
 const styles = StyleSheet.create({
-  circleButton: {
+  button: {
     position: 'absolute',
-    bottom: 10,
-    right: 10,
     zIndex: 3,
     height: 53,
     width: 53,
     borderRadius: 100,
-    backgroundColor: 'white',
     justifyContent: 'center',
     alignItems: 'center',
-    shadowColor: '#000',
-    shadowOffset: {
-      width: 0,
-      height: 5,
-    },
-    shadowOpacity: 0.34,
-    shadowRadius: 6.27,
-
-    elevation: 10,
   },
 });
 
