@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {SafeAreaView, StyleSheet, View} from 'react-native';
 import MapboxGL, {
   MapView,
@@ -9,23 +9,41 @@ import CircleButton from '../components/CircleButton';
 import Locate from '../../assets/icons/locate.svg';
 import Menu from '../../assets/icons/menu.svg';
 
+import Geolocation from '@react-native-community/geolocation';
+
 const Map = () => {
+  const [userCoordenates, setUserCoordenates] = useState([0, 0]);
+
+  const recenterOnUser = () => {
+    Geolocation.getCurrentPosition((info) => {
+      console.warn(info.coords);
+      const latitude = info.coords.latitude;
+      const longitude = info.coords.longitude;
+      setUserCoordenates([longitude, latitude]);
+    });
+  };
+
   return (
     <SafeAreaView style={styles.container}>
       <MapView
+        centerCoordinate={userCoordenates}
         preferedFramerPerSecond={60}
         style={styles.container}
-        styleURL={MapboxGL.StyleURL.Dark}>
+        scrollEnabled={false}
+        styleURL={MapboxGL.StyleURL.Dark}
+        onWillStartRenderingMap={() => recenterOnUser()}>
         <Camera
-          centerCoordinate={[-49.6446024, -27.2108001]}
-          zoomLevel={15}
-          minZoomLevel={10}
-          maxZoomLevel={15}
+          centerCoordinate={userCoordenates}
+          zoomLevel={17}
+          minZoomLevel={15}
+          maxZoomLevel={18}
+          animationMode={'moveTo'}
+          animationDuration={6000}
         />
         <PointAnnotation
           id="user_pin"
           selected={false}
-          coordinate={[-49.6446024, -27.2108001]}>
+          coordinate={userCoordenates}>
           <View style={styles.point} />
         </PointAnnotation>
       </MapView>
@@ -35,7 +53,7 @@ const Map = () => {
         onPress={() => {}}>
         <Menu color="#F7F7F7" />
       </CircleButton>
-      <CircleButton onPress={() => {}} bgColour="transparent">
+      <CircleButton onPress={() => recenterOnUser()} bgColour="transparent">
         <Locate stroke={'#F7F7F7'} />
       </CircleButton>
     </SafeAreaView>
