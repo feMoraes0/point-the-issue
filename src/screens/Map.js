@@ -53,8 +53,8 @@ const Map = () => {
         onPress={() => {}}>
         <Menu color="#F7F7F7" />
       </CircleButton>
-      <CircleButton onPress={() => {}} bgColour="transparent">
-        <Plus stroke={'#F7F7F7'} />
+      <CircleButton onPress={() => {}}>
+        <Plus color="#F7F7F7" />
       </CircleButton>
     </SafeAreaView>
   );
