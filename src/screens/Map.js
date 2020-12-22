@@ -6,7 +6,7 @@ import MapboxGL, {
   PointAnnotation,
 } from '@react-native-mapbox-gl/maps';
 import CircleButton from '../components/CircleButton';
-import Locate from '../../assets/icons/locate.svg';
+import Plus from '../../assets/icons/plus.svg';
 import Menu from '../../assets/icons/menu.svg';
 
 import Geolocation from '@react-native-community/geolocation';
@@ -53,8 +53,8 @@ const Map = () => {
         onPress={() => {}}>
         <Menu color="#F7F7F7" />
       </CircleButton>
-      <CircleButton onPress={() => recenterOnUser()} bgColour="transparent">
-        <Locate stroke={'#F7F7F7'} />
+      <CircleButton onPress={() => {}} bgColour="transparent">
+        <Plus stroke={'#F7F7F7'} />
       </CircleButton>
     </SafeAreaView>
   );
