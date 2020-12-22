@@ -12,7 +12,7 @@ import Moon from '../../assets/icons/moon.svg';
 import MapPin from '../../assets/icons/map_pin.svg';
 import Plus from '../../assets/icons/plus.svg';
 
-const Menu = () => {
+const Menu = ({closeMenu}) => {
   return (
     <SafeAreaView style={styles.container}>
       <TouchableOpacity style={styles.menuItem}>
@@ -39,7 +39,7 @@ const Menu = () => {
         </View>
         <Text style={styles.menuItemText}>Dark mode</Text>
       </TouchableOpacity>
-      <TouchableOpacity style={styles.closeBox}>
+      <TouchableOpacity style={styles.closeBox} onPress={() => closeMenu()}>
         <View style={styles.closeBoxIcon}>
           <Plus color="#F7F7F7" width={40} height={40} />
         </View>
@@ -74,8 +74,8 @@ const styles = StyleSheet.create({
   },
   closeBox: {
     position: 'absolute',
-    right: 20.0,
-    top: 20.0,
+    right: 15.0,
+    top: 15.0,
     transform: [{rotate: '45deg'}],
   },
 });

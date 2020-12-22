@@ -11,7 +11,7 @@ import Menu from '../../assets/icons/menu.svg';
 
 import Geolocation from '@react-native-community/geolocation';
 
-const Map = () => {
+const Map = ({openMenu}) => {
   const [userCoordenates, setUserCoordenates] = useState([0, 0]);
 
   const recenterOnUser = () => {
@@ -50,7 +50,7 @@ const Map = () => {
       <CircleButton
         location="top-left"
         bgColour="transparent"
-        onPress={() => {}}>
+        onPress={() => openMenu()}>
         <Menu color="#F7F7F7" />
       </CircleButton>
       <CircleButton onPress={() => {}}>
