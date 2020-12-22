@@ -6,8 +6,8 @@ import MapboxGL, {
   PointAnnotation,
 } from '@react-native-mapbox-gl/maps';
 import CircleButton from '../components/CircleButton';
+import Header from '../components/Header';
 import Plus from '../../assets/icons/plus.svg';
-import Menu from '../../assets/icons/menu.svg';
 
 import Geolocation from '@react-native-community/geolocation';
 
@@ -25,6 +25,7 @@ const Map = ({openMenu}) => {
 
   return (
     <SafeAreaView style={styles.container}>
+      <Header menuAction={openMenu} />
       <MapView
         centerCoordinate={userCoordenates}
         preferedFramerPerSecond={60}
@@ -47,12 +48,6 @@ const Map = ({openMenu}) => {
           <View style={styles.point} />
         </PointAnnotation>
       </MapView>
-      <CircleButton
-        location="top-left"
-        bgColour="transparent"
-        onPress={() => openMenu()}>
-        <Menu color="#F7F7F7" />
-      </CircleButton>
       <CircleButton onPress={() => {}}>
         <Plus color="#F7F7F7" />
       </CircleButton>
